@@ -1,0 +1,29 @@
+# config_compare.yaml
+
+
+dataset_ref: /home/rhino/row_groups/indicators/
+dataset_cmp: /home/rhino/row_groups/indicators2/
+
+output_root: comparison
+
+# Column names — defaults shown, override if your data uses different names
+time_column:    bin_time
+product_column: instrument_name
+
+# "pivoted"   — columns: <time_col>, <product_col>, <indicator_1>, <indicator_2>, ...
+# "unpivoted" — columns: <time_col>, <product_col>, indicator_name, indicator_value
+format_ref: unpivoted
+format_cmp: unpivoted
+
+# Required when formats differ: "pivot" the unpivoted side, or "unpivot" the pivoted side
+align_strategy: unpivot
+
+# Which checks to run — omit any you don't need, or remove the key to run all three
+checks:
+  - keys_only
+  - correlations
+  - differences
+
+# Optional: restrict discovery to a specific partition granularity
+# granularity_ref: QUARTER
+# granularity_cmp: DAY
